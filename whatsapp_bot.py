@@ -43,7 +43,7 @@ def send_whatsapp_message(to, message):
     }
     data = {
         "messaging_product": "whatsapp",
-        "to": "77771601111",
+        "to": to,
         "type": "text",
         "text": {"body": message}
     }
@@ -64,7 +64,8 @@ def webhook():
         if "messages" not in value:
             return jsonify({"status": "ok"})
         message = value["messages"][0]
-        from_number = message["from"]
+        from_number = "7" + "8" + message["from"][1:]
+        print(f"CONVERTED: {from_number}")
         text = message["text"]["body"]
 
         if from_number not in conversations:
