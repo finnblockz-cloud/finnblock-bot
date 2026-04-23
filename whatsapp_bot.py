@@ -43,7 +43,7 @@ def send_whatsapp_message(to, message):
     }
     data = {
         "messaging_product": "whatsapp",
-        "to": to,
+        "to": "77771601111",
         "type": "text",
         "text": {"body": message}
     }
