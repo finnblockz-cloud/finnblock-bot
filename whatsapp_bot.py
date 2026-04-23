@@ -81,6 +81,7 @@ def webhook():
         reply = response.content[0].text
         conversations[from_number].append({"role": "assistant", "content": reply})
 
+        print(f"Sending to {from_number}: {reply[:50]}")
         send_whatsapp_message(from_number, reply)
     except Exception as e:
         print(f"ERROR: {e}")
