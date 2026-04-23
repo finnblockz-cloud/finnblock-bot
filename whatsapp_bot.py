@@ -60,7 +60,10 @@ def verify():
 def webhook():
     data = request.json
     try:
-        message = data["entry"][0]["changes"][0]["value"]["messages"][0]
+        value = data["entry"][0]["changes"][0]["value"]
+        if "messages" not in value:
+            return jsonify({"status": "ok"})
+        message = value["messages"][0]
         from_number = message["from"]
         text = message["text"]["body"]
 
