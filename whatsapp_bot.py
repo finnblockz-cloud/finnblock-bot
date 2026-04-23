@@ -82,8 +82,8 @@ def webhook():
         conversations[from_number].append({"role": "assistant", "content": reply})
 
         send_whatsapp_message(from_number, reply)
-    except:
-        pass
+    except Exception as e:
+        print(f"ERROR: {e}")
     return jsonify({"status": "ok"})
 
 if __name__ == "__main__":
