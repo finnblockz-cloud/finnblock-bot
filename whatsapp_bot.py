@@ -36,7 +36,7 @@ SYSTEM_PROMPT = """Ты Амир, опытный менеджер по прод�
 import requests
 
 def send_whatsapp_message(to, message):
-    url = f"https://graph.facebook.com/v18.0/{PHONE_NUMBER_ID}/messages"
+    url = f"https://graph.facebook.com/v20.0/{PHONE_NUMBER_ID}/messages"
     headers = {
         "Authorization": f"Bearer {WHATSAPP_TOKEN}",
         "Content-Type": "application/json"
@@ -47,7 +47,8 @@ def send_whatsapp_message(to, message):
         "type": "text",
         "text": {"body": message}
     }
-    requests.post(url, headers=headers, json=data)
+    resp = requests.post(url, headers=headers, json=data)
+    print(f"Send response: {resp.status_code} {resp.text}")
 
 @app.route("/webhook", methods=["GET"])
 def verify():
